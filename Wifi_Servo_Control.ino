@@ -17,6 +17,7 @@ const int SERVO_STOP = 90;
 // Create an instance of the server
 WebServer server(80);
 
+// Create webpage layout using html and javascript
 void handleRoot() {
   String html = "<html><head><style>body { background-color: #303030; font-family: Arial, Helvetica, sans-serif; color: #f0f0f0; }.slider { width: 100%; }.output { width: 100%; text-align: center; margin: 25px 0; font-size: 2em; }</style><script>function setSpeed() {var speed = document.getElementById('a').value;document.getElementById('o').value = speed;var xhttp = new XMLHttpRequest();xhttp.open('GET', '/servo?speed=' + speed, true);xhttp.send();}</script></head><body><h2>ESP32 Servo Control</h2><p>Move the slider to control the servo speed:</p><form><input id='a' type='range' min='-90' max='90' value='0' class='slider' oninput='setSpeed()' onchange='setSpeed()'><output id='o'>0</output></form></body></html>";
   server.send(200, "text/html", html);
